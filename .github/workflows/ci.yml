@@ -17,15 +17,15 @@ jobs:
       
       - name: Install dependencies
         working-directory: ./frontend
-        run: nmp ci
+        run: npm ci
       
       - name: Run linters
         uses: wearerequired/lint-action@v3
         with:
           eslint: true
-          eslint-dir: frontend
+          eslint_dir: frontend
           prettier: true
-          prettier-dir: frontend
+          prettier_dir: frontend
           
   build-and-push:
     needs: [code-lint]
