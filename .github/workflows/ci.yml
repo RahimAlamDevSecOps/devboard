@@ -1,10 +1,16 @@
-# Goal: Build the image for DevBoard frontend and push to dockrhub
+# Goal: Build the image for DevBoard frontend and push to dockrhub, after linting the code.
 name: CI
 on:
   push:
     branches: [master]
 jobs:
+  code-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
   build-and-push:
+    needs: [code-lint]
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
