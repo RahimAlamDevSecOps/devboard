@@ -9,6 +9,24 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
+     
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+      
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: nmp ci
+      
+      - name: Run linters
+        uses: wearerequired/lint-action@v3
+        with:
+          eslint: true
+          eslint-dir: frontend
+          prettier: true
+          prettier-dir: frontend
+          
   build-and-push:
     needs: [code-lint]
     runs-on: ubuntu-latest
